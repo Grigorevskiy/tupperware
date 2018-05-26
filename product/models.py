@@ -30,6 +30,7 @@ class Item(models.Model):
     sale_price = models.IntegerField(verbose_name=('Sale Price'), null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
     category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
+    count = models.IntegerField(verbose_name=('Item Count'))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
