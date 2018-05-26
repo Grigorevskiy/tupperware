@@ -1,0 +1,17 @@
+certifi==2018.4.16
+chardet==3.0.4
+defusedxml==0.5.0
+Django==2.0.5
+django-allauth==0.35.0
+django-debug-toolbar==1.9.1
+idna==2.6
+oauthlib==2.0.7
+Pillow==5.1.0
+psycopg2==2.7.4
+psycopg2-binary==2.7.4
+python3-openid==3.1.0
+pytz==2018.4
+requests==2.18.4
+requests-oauthlib==0.8.0
+sqlparse==0.2.4
+urllib3==1.22
