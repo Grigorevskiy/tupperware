@@ -5,16 +5,16 @@ from product.models import Category, Item
 def home(request):
     return render(request, 'home.html')
 
-# def about_us(request):
-#     return render(request, 'about_us.html')
-#
-#
-# def delivery(request):
-#     return render(request, 'delivery.html')
-#
-#
-# def faq(request):
-#     return render(request, 'faq.html')
+def about_us(request):
+    return render(request, 'about_us.html')
+
+
+def delivery(request):
+    return render(request, 'delivery.html')
+
+
+def faq(request):
+    return render(request, 'faq.html')
 
 
 def search(request):

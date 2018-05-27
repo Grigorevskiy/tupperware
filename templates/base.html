@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-sm-4">
-			            <a href="http://tupperware.com.ua/"><img src="https://tupperware.com.ua/image/catalog/tupperware.png.pagespeed.ce.J41JH_SjXt.png"
+			            <a href="/"><img src="https://tupperware.com.ua/image/catalog/tupperware.png.pagespeed.ce.J41JH_SjXt.png"
                                                                  class="img-responsive"></a>
 		            </div>
                 <div class="col-sm-4 hidden-xs">
@@ -56,7 +56,7 @@
                     <ul class="navbar-nav mr-auto">
                         {% if not user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Registration</a>
@@ -110,13 +110,13 @@
             </li>
 
             <li class="nav-item active">
-                <a href="#" class="btn btn-light">About US</a>
+                <a href="{% url 'about_us' %}" class="btn btn-light">About US</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="btn btn-light">Delivery/Payment</a>
+                <a href="{% url 'delivery' %}" class="btn btn-light">Delivery/Payment</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="btn btn-light">FAQ</a>
+                <a href="{% url 'faq' %}" class="btn btn-light">FAQ</a>
             </li>
 
 
@@ -151,7 +151,7 @@
       <!-- Grid column -->
       <div class="col-md-2 mb-3">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#">About us</a>
+          <a href="{% url 'about_us' %}">About us</a>
         </h6>
       </div>
       <!-- Grid column -->
@@ -159,18 +159,17 @@
       <!-- Grid column -->
       <div class="col-md-2 mb-3">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#">Delivery and Payment</a>
+          <a href="{% url 'delivery' %}">Delivery and Payment</a>
         </h6>
       </div>
 
       <!-- Grid column -->
       <div class="col-md-2 mb-3">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#">FAQ</a>
+          <a href="{% url 'faq' %}">FAQ</a>
         </h6>
       </div>
       <!-- Grid column -->
-
 
     </div>
     <!-- Grid row-->
@@ -210,5 +209,3 @@
   $("footer.footer").addClass("fixed-bottom");
 
 </script>
-
-
