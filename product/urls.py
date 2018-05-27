@@ -1,6 +1,6 @@
 from django.urls import path
-
 from product import views
+
 
 urlpatterns = [
     path('<int:item_id>/comment/create', views.create_comment, name='create_comment'),

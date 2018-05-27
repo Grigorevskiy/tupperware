@@ -123,20 +123,30 @@
         </ul>
         <!-- Links -->
 
-        <form class="form-inline">
-            <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            </div>
-        </form>
-    </div>
+        <form class="form-inline my-2 my-lg-0 ml-3" id="searchform" aria-label="{% trans "Search" %}" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                     <input class="form-control mr-sm-2 h-75" id="searchbox" name="q" type="text" placeholder="{% trans "Search" %}">
+                     <button class="btn btn-outline-success h-75 p-1 m-1" type="submit">{% trans "Search" %}</button>
+               </form>
+        </div>
     <!-- Collapsible content -->
 
 </nav>
 <!--/.Navbar-->
 
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     {% block content %}
     {% endblock content %}
+</div>
+
 
 
 <!-- Footer -->

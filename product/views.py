@@ -1,7 +1,4 @@
-
-# Create your views here.
 from django.shortcuts import redirect, get_object_or_404, render
-
 from product.forms import CommentForm
 from product.models import Comment
 
@@ -20,6 +17,7 @@ def create_comment(request, item_id):
     else:
         return redirect('/')
 
+
 def delete_comment(request, comment_id, item_id):
     if request.user.is_authenticated:
         comment = get_object_or_404(Comment, id=comment_id, user=request.user.id)
@@ -29,6 +27,7 @@ def delete_comment(request, comment_id, item_id):
         return render(request, "product/detail.html")
     else:
         return redirect('/')
+
 
 def update_comment(request, comment_id, item_id):
     if request.user.is_authenticated:
