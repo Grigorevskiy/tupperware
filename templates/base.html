@@ -43,7 +43,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="col-sm-4 hidden-xs">
-                    <div class="phone"><i class="fa fa-phone"></i><a href="tel:0687337763">068-733-77-63</a></div>
+                    <div class="phone"><a>+068-733-77-63</a><i class="material-icons">settings_phone</i>
+                    </div>
                     </div>
 
                     <div class="col-sm-4">
@@ -76,7 +77,8 @@
 
 
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg container">
+{#<nav class="navbar navbar-expand-sm bg-dark container">#}
+            <nav class="navbar navbar-expand-lg navbar-light container">
 
     <!-- Navbar brand -->
 
@@ -94,24 +96,27 @@
 
             <!-- Dropdown -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Categories</strong></a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="#">About Us
-                    <span class="sr-only">(current)</span>
-                </a>
+                <a href="#" class="btn btn-light">About US</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">FAQ</a>
+                <a href="#" class="btn btn-light">Delivery/Payment</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Delivery/Paymant</a>
+                <a href="#" class="btn btn-light">FAQ</a>
             </li>
 
 
@@ -130,8 +135,6 @@
 <!--/.Navbar-->
 
 
-</body>
-
     {% block content %}
     {% endblock content %}
 
@@ -148,7 +151,7 @@
       <!-- Grid column -->
       <div class="col-md-2 mb-3">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">About us</a>
+          <a href="#">About us</a>
         </h6>
       </div>
       <!-- Grid column -->
@@ -156,25 +159,18 @@
       <!-- Grid column -->
       <div class="col-md-2 mb-3">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Delivery and Payment</a>
+          <a href="#">Delivery and Payment</a>
         </h6>
       </div>
 
       <!-- Grid column -->
       <div class="col-md-2 mb-3">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">FAQ</a>
+          <a href="#">FAQ</a>
         </h6>
       </div>
       <!-- Grid column -->
 
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Contact</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
 
     </div>
     <!-- Grid row-->
@@ -188,6 +184,8 @@
 
 </footer>
 <!-- Footer -->
+</body>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -213,6 +211,4 @@
 
 </script>
 
-</body>
-</html>
 
