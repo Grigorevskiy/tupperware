@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('', include('pages.urls')),
     path('admin/', admin.site.urls),
@@ -29,7 +30,6 @@ urlpatterns = [
     path('item/', include('product.urls')),
     path('wishlist/', include('wishlist.urls')),
     path('order/', include('order.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
  ]
 
 
