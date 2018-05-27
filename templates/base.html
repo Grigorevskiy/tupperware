@@ -38,18 +38,154 @@
 
 <body>
 
-<!--Header-->
-<!--/.Header-->
+<header>
+    <div class="container bg-light">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="col-sm-4 hidden-xs">
+                    <div class="phone"><a>+068-733-77-63</a><i class="material-icons">settings_phone</i>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-4">
+			            <a href="http://tupperware.com.ua/"><img src="https://tupperware.com.ua/image/catalog/tupperware.png.pagespeed.ce.J41JH_SjXt.png"
+                                                                 class="img-responsive"></a>
+		            </div>
+                <div class="col-sm-4 hidden-xs">
+
+                    <ul class="navbar-nav mr-auto">
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Registration</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+             </nav>
+        </div>
+    </div>
+
+</header>
+
+
+<!--Navbar-->
+{#<nav class="navbar navbar-expand-sm bg-dark container">#}
+            <nav class="navbar navbar-expand-lg navbar-light container">
+
+    <!-- Navbar brand -->
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Categories</strong></a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+
+            <li class="nav-item active">
+                <a href="#" class="btn btn-light">About US</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="btn btn-light">Delivery/Payment</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="btn btn-light">FAQ</a>
+            </li>
+
+
+        </ul>
+        <!-- Links -->
+
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
 
 
     {% block content %}
     {% endblock content %}
 
-</div>
 
-<!--Footer-->
+<!-- Footer -->
+    <footer class="footer font-small bg-light lighten-3 pt-4 mt-5">
 
-<!--/.Footer-->
+  <!-- Footer Links -->
+  <div class="container">
+
+    <!-- Grid row-->
+    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#">About us</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#">Delivery and Payment</a>
+        </h6>
+      </div>
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#">FAQ</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+
+    </div>
+    <!-- Grid row-->
+    <hr class="rgba-white-light" style="margin: 0 15%;">
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Tupperware</div>
+
+</footer>
+<!-- Footer -->
+</body>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -63,5 +199,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
 
 
-</body>
-</html>
+<script>
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+
+    {#For footer if page is small#}
+    if ($(document).height() <= $(window).height())
+  $("footer.footer").addClass("fixed-bottom");
+
+</script>
+
+
