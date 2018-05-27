@@ -6,6 +6,8 @@ from product.models import Item
 class Order(models.Model):
     class Meta:
         verbose_name = ("Order")
+        verbose_name_plural = ("Orders")
+
 
     ORDER_STATUS_CHOICES = (
         (0, ('New')),
