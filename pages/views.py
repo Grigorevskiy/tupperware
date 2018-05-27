@@ -3,7 +3,8 @@ from product.models import Category, Item
 
 
 def home(request):
-    return render(request, 'home.html')
+    categories = Category.objects.all()
+    return render(request, 'base.html', {'categories': categories})
 
 def about_us(request):
     return render(request, 'about_us.html')

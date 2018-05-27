@@ -9,7 +9,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-119417362-1');
 </script>
 
@@ -29,7 +28,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
 
-
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -45,7 +43,7 @@
                 <div class="col-sm-4 hidden-xs">
                     <div class="phone"><a>+068-733-77-63</a><i class="material-icons">settings_phone</i>
                     </div>
-                    </div>
+                </div>
 
                     <div class="col-sm-4">
 			            <a href="/"><img src="https://tupperware.com.ua/image/catalog/tupperware.png.pagespeed.ce.J41JH_SjXt.png"
@@ -55,15 +53,15 @@
 
                     <ul class="navbar-nav mr-auto">
                         {% if not user.is_authenticated %}
-                        <li class="nav-item">
+                        <li class="nav-item" style="margin-left: 180px;">
                             <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Registration</a>
                         </li>
                         {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Logout</a>
+                        <li class="nav-item" style="margin-left: 230px;">
+                            <a class="nav-link" href="#">Logout<i class="material-icons" style="font-size: 20px;">arrow_right_alt</i></a>
                         </li>
                         {% endif %}
                     </ul>
@@ -75,12 +73,9 @@
 
 </header>
 
-
 <!--Navbar-->
 {#<nav class="navbar navbar-expand-sm bg-dark container">#}
 <nav class="navbar navbar-expand-lg navbar-light container">
-
-    <!-- Navbar brand -->
 
     <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -90,27 +85,35 @@
 
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="basicExampleNav">
-
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
 
             <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Categories
-                  </button>
-                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
 
-            <li class="nav-item active">
+                <div class="form-group ">
+                    <form class="form-inline my-2 my-lg-0 ml-3" method="get">
+                       <li class="nav-item">
+
+                        <select class="form-control form-control sm-50 h-103" name="category_id">
+                            <option value="">All Categories</option>
+                              {% for category in categories %}
+                                    {% if category.id|slugify == query_category_id %}
+                                            <option value="{{ category.id }}" selected="selected">{{ category.name }}</option>
+                                    {% else %}
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
+                                  {% endif %}
+                              {% endfor %}
+                        </select>
+
+            <input class="form-control mr-sm-10 h-75 "  id="searchbox" name="q" type="text" placeholder="Search" value="{{ query_item_name }}" >
+            <button type="submit" class="btn btn-outline-primary h-75 p-1 m-1">Search</button>
+                       </li>
+
+                      </form>
+                </div>
+
+
+            <li style="margin-left: 130px;">
                 <a href="{% url 'about_us' %}" class="btn btn-light">About US</a>
             </li>
 
@@ -118,11 +121,11 @@
                 <a href="{% url 'delivery' %}" class="btn btn-light">Delivery/Payment</a>
             </li>
 
-            <li class="nav-item">
+            <li>
                 <a href="{% url 'faq' %}" class="btn btn-light">FAQ</a>
             </li>
 
-            <li style="margin-left: 220px;">
+            <li style="margin-left: 80px;">
             <a href="{% url 'get_wishlist' %}"><i class="material-icons" style="font-size: 35px;
                    {% if not user.wishlist.item %}padding-left: 33px{% endif %}">start</i>
                 <span style="margin-left: -38px" class="badge badge-danger">{{ user.wishlist.item.count }}</span></a>
@@ -136,11 +139,6 @@
         </ul>
         <!-- Links -->
 
-        <form class="form-inline my-2 my-lg-0 ml-3" id="searchform" aria-label="{% trans "Search" %}" action="{% url 'search' %}" method="get" accept-charset="utf-8">
-                     <input class="form-control mr-sm-2 h-75" id="searchbox" name="q" type="text" placeholder="{% trans "Search" %}">
-                     <button class="btn btn-outline-success h-75 p-1 m-1" type="submit">{% trans "Search" %}</button>
-               </form>
-        </div>
     <!-- Collapsible content -->
 
 </nav>
