@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+
+
 {% block head_title %}Sign In{% endblock %}
 
 {% block content %}
@@ -29,23 +31,28 @@
                         {% endif %}
                         <!-- END Field with form.errors -->
 
-                    <div class="card-header">
+                    <div class="card-header p-3 mb-2 bg-dark text-white">
                         <h4 class="my-0 font-weight-normal">Please sign in</h4>
                     </div>
                     <div class="card-body">
                         <p>Please sign in with one
-                        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+                        of your existing third party accounts. Or, <a href="{{ signup_url }}" class="text-danger">sign up</a>
                         for a {{ site_name }} account and sign in below:</p>
-                        <form class="login" method="POST" role="form" action="{% url 'account_login' %}"
+                        <form class="login" method="POST" role="form" action="{% url 'account_login' %}">
+                        {% csrf_token %}
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="control-label" for="input-email">E-Mail:</label>
-                                    <input type="text" name="email" value="" placeholder="E-Mail:" id="input-email" class="form-control">
+                                    <label class="control-label" for="id_login">E-Mail:</label>
+                                    <input type="email" name="login" value="" placeholder="E-Mail:" id="id_login" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="input-password">Password:</label>
-                                    <input type="password" name="password" value="" placeholder="Password:" id="input-password" class="form-control">
+                                    <label class="control-label" for="id_password">Password:</label>
+                                    <input type="password" name="password" value="" placeholder="Password:" id="id_password" class="form-control">
                                 </div>
+                                    <div class="form-group">
+                                        <label for="id_remember"><strong>Remember Me:</strong></label>
+                                        <input type="checkbox" name="remember" id="id_remember">
+                                    </div>
                                 {% if redirect_field_value %}
                                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                                 {% endif %}
@@ -58,5 +65,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

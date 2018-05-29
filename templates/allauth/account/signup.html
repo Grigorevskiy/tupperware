@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block head_title %}SignUp{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center h-100">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="card mb-4 box-shadow">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        {{ error|escape }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                    <div class="card-header p-3 mb-2 bg-dark text-white">
+                        <h4 class="my-0 font-weight-normal">Please sign up</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Already have an account?<br> Then please <a href="{{ login_url }} " class="text-danger">sign in</a> to your account</p>
+                        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                            {% csrf_token %}
+                        <fieldset>
+                                <div class="form-group">
+                                    <label class="control-label" for="id_email">E-Mail:</label>
+                                    <input type="text" name="email" value="" placeholder="E-Mail:" id="id_email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="id-password1">Password:</label>
+                                    <input type="password" name="password1" value="" placeholder="Password:" id="id_password1"  class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="id-password2">Password confirm:</label>
+                                    <input type="password" name="password2" value="" placeholder="Password:" id="id_password2"  class="form-control">
+                                </div>
+                                <input type="submit" class="btn btn-dark"/>
+                        </fieldset>
+                        {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
