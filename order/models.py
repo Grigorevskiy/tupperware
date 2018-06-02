@@ -16,7 +16,7 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(User, verbose_name=('Buyer'), on_delete=False)
-    items = models.ManyToManyField(Item, related_name='in_orders')
+    items = models.ManyToManyField(Item, related_name='in_orders', through='OrderInfo')
     track_number = models.CharField(max_length=255, verbose_name=('Track Number'), blank=True)
     delivery_address = models.CharField(max_length=255, verbose_name=('Delivery Address'), blank=True)
     contact_phone = models.CharField(max_length=255, verbose_name=('Contact phone'), blank=True)
@@ -27,3 +27,9 @@ class Order(models.Model):
 
     def __str__(self):
         return ("Order # ") + str(self.pk)
+
+
+class OrderInfo(models.Model):
+    item_id = models.ForeignKey(Item, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    count_item = models.IntegerField(default=1)

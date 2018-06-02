@@ -1,10 +1,10 @@
 from django.contrib import admin
-from order.models import Order
+from order.models import Order, OrderInfo
 
 
 class ItemInline(admin.TabularInline):
     model = Order.items.through
-    extra = 0
+    extra = 1
     model._meta.verbose_name_plural = ("Order Items")
 
 class OrderAdmin(admin.ModelAdmin):

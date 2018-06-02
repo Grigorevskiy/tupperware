@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<h1>Creating Order</h1>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <p class="text-center"><strong>Fill information for order</strong></p>
+
+            <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+          <th>
+            <form method="POST" class="form-group" id="order">{% csrf_token %}
+              {{ form.as_p }}
+            </form>
+          </th>
+      </tr>
+    </thead>
+  </table>
+        </div>
+
+        <div class="col-md-6">
+            <p class="text-center"><strong>Items in cart</strong></p>
+
+            <!--Table-->
+<table class="table table-bordered">
+
+    <!--Table head-->
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Item name</th>
+            <th>SKU</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr>
+            <td scope="row"><img src="{{ item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.sku }}</td>
+            <td>
+                {{ form_info }}
+            </td>
+            <td>{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
+        </tr>
+
+    </tbody>
+
+    <!--Table body-->
+</table>
+<!--Table-->
+
+<tfoot>
+
+        <p class="text-right"><strong>Total Price €:{{ cart_total }}</strong></p>
+
+    <div class="row">
+
+        <div class="col-md-6"><a href="/" class="btn btn-outline-primary">{% trans "Continue Shopping" %}</a></div>
+        <div class="col-md-6"><button type="submit" form="order" class="btn btn-outline-primary btn-block">Create Order</button></td>
+
+    </div>
+
+                </div>
+
+</tfoot>
+
+    </div>
+
+{% endblock %}
