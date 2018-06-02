@@ -53,3 +53,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.body
+
+class SliderPhoto(models.Model):
+    file = models.ImageField(upload_to='slider-photos')
