@@ -32,119 +32,102 @@
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+<style>
+.vyrovnyat {
+  padding: 1em 0;
+  text-align: center; /* выровнять текст и картинки по горизонтали */
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-    <div class="container bg-light">
+<!-- START Header top with links -->
+<div class="container-fluid bg-light" style="border-bottom: 1px solid #e0e0e0">
+    <div class="container">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="col-sm-4 hidden-xs">
-                    <div class="phone"><a>+068-733-77-63</a><i class="material-icons">settings_phone</i>
-                    </div>
-                </div>
-
-                    <div class="col-sm-4">
-			            <a href="/"><img src="https://tupperware.com.ua/image/catalog/tupperware.png.pagespeed.ce.J41JH_SjXt.png"
-                                                                 class="img-responsive"></a>
-		            </div>
-                <div class="col-sm-4 hidden-xs">
-
-                    <ul class="navbar-nav mr-auto">
-                        {% if not user.is_authenticated %}
-                        <li class="nav-item" style="margin-left: 180px;">
-                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}">Registration</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item" style="margin-left: 230px;">
-                            <a class="nav-link" href={% url 'account_logout' %}>Logout<i class="material-icons" style="font-size: 20px;">arrow_right_alt</i></a>
-                        </li>
-                        {% endif %}
-                    </ul>
-
-                </div>
-             </nav>
+                <ul class="navbar-nav mr-auto">
+                            <li class="nav-item ml-3">
+                                <a class="nav-link" href="{% url 'get_wishlist' %}">Wishlist {% if user.wishlist.item.count > 0 %}({{ user.wishlist.item.count }}){% else %} (0) {% endif %}</a>
+                            </li>
+                            <li class="nav-item ml-3">
+                                <a class="nav-link" href="{% url 'get_cart' %}">Cart with purchases {% if  user.cart.item.count  > 0 %}({{  user.cart.item.count  }}){% else %} (0) {% endif %}</a>
+                            </li>
+                </ul>
+                <ul class="navbar-nav">
+                            {% if not user.is_authenticated %}
+                            <li class="nav-item ml-3" >
+                                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                            </li>
+                            <li class="nav-item ml-3">
+                                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item ml-3">
+                                <a class="nav-link" href="{% url 'account_change_password' %}">Change password</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            </li>
+                            {% endif %}
+                            </li>
+                </ul>
+            </nav>
         </div>
     </div>
+</div>
+<!-- END Header top with links -->
 
+<!-- Header with logo and phone -->
+<header>
+    <div class="container mt-3">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                         <a href="/"><img src="http://i079.radikal.ru/1603/f7/e32d9e4ed305.png"
+                                                                 class="img-responsive"></a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+           <div class="card-body border-0 text-center mt-5">
+                  <i class="material-icons" style="font-size: 48px;">call</i>
+                    <h3>+470 033 2212 21</h3>
+            </div>
+
+                    </div>
+           </div>
+        </div>
+    </div>
 </header>
+<!-- END header with logo and phone -->
+
+<!-- START block with category, search and cart -->
+<div class="container">
+
+           <div class="row">
+       <div class="col-sm-4 m-0 p-0">
+           <h4 class="p-3 mb-2 bg-warning text-dark text-uppercase">Categories</h4>
+       </div>
+       <div class="col-sm-4 mb-2 bg-info">
+            <form class="form-inline my-2 my-lg-0 ml-3 pt-2" id="searchform" aria-label="Search" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                      <input class="form-control mr-sm-2 h-75" id="searchbox" name="q" type="text" placeholder="Search">
+                      <a href="{% url 'search' %}?q=&category_id="><button class="btn btn-default btn-rounded h-75 p-1 m-1" type="submit">Search</button></a>
+                </form>
+       </div>
+       <div class="col-sm-4 bg-info" style="height: 60px">
+           <h5 class="p-3 mb-1 text-dark text-right text-uppercase">
+               <a class="text-dark" href="{% url 'get_cart' %}"> <i class="material-icons" style="font-size: 18px;">shopping_cart</i>Cart with purchases {% if  user.cart.item.count  > 0 %}({{  user.cart.item.count  }}){% else %} (0) {% endif %}</a>
+           </h5>
+       </div>
+   </div>
+</div>
 
 
-<!--Navbar-->
-{#<nav class="navbar navbar-expand-sm bg-dark container">#}
-<nav class="navbar navbar-expand-lg navbar-light container">
-
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-
-            <!-- Dropdown -->
-
-                <div class="form-group ">
-                    <form class="form-inline my-2 my-lg-0 ml-3" method="get">
-                       <li class="nav-item">
-
-                        <select class="form-control form-control sm-50 h-103" name="category_id">
-                            <option value="">All Categories</option>
-                              {% for category in categories %}
-                                    {% if category.id|slugify == query_category_id %}
-                                            <option value="{{ category.id }}" selected="selected">{{ category.name }}</option>
-                                    {% else %}
-                                            <option value="{{ category.id }}">{{ category.name }}</option>
-                                  {% endif %}
-                              {% endfor %}
-                        </select>
-
-            <input class="form-control mr-sm-10 h-75 "  id="searchbox" name="q" type="text" placeholder="Search" value="{{ query_item_name }}" >
-            <button type="submit" class="btn btn-outline-primary h-75 p-1 m-1">Search</button>
-                       </li>
-
-                      </form>
-                </div>
 
 
-            <li style="margin-left: 130px;">
-                <a href="{% url 'about_us' %}" class="btn btn-light">About US</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{% url 'delivery' %}" class="btn btn-light">Delivery/Payment</a>
-            </li>
-
-            <li>
-                <a href="{% url 'faq' %}" class="btn btn-light">FAQ</a>
-            </li>
-
-            <li style="margin-left: 80px;">
-            <a href="{% url 'get_wishlist' %}"><i class="material-icons" style="font-size: 35px;
-                   {% if not user.wishlist.item %}padding-left: 33px{% endif %}">start</i>
-                <span style="margin-left: -38px" class="badge badge-danger">{{ user.wishlist.item.count }}</span></a>
-            </li>
-
-            <li>
-                    <a href="{% url 'get_cart' %}"><i class="material-icons" style="font-size: 35px;">shopping_cart</i>
-                        <span class="badge badge-danger">{{ user.cart.item.count }}</span></a>
-            </li>
-
-        </ul>
-        <!-- Links -->
-
-    <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->
-
+<!-- END block -->
 <div class="container">
     {% if messages %}
         {% for message in messages %}
@@ -154,58 +137,71 @@
             </div>
         {% endfor %}
     {% endif %}
+</div>
 
     {% block content %}
     {% endblock content %}
 
-</div>
+<!-- START container with search, categories and -->
+<footer class="footer font-small bg-light lighten-3 pt-4 mt-5" style="border-top: 1px solid #e0e0e0">
+        <!--Footer Links-->
+        <div class="container text-center text-md-left">
+            <div class="row ">
 
+                <!--First column-->
+                <div class="col-md-4 col-lg-4">
+                    <p class="text-justify">Tupperware is a home products line that includes preparation, storage, and serving products for the kitchen and home.
+                        In 1942, Earl Tupper developed his first bell shaped container;
+                        the brand products were introduced to the public in 1948.</p>
+                </div>
+                <!--/.First column-->
 
+                <hr class="clearfix w-100 d-md-none">
 
-<!-- Footer -->
-    <footer class="footer font-small bg-light lighten-3 pt-4 mt-5">
+                <!--Second column-->
+                <div class="col-md-4 col-lg-4 ml-auto text-center">
 
-  <!-- Footer Links -->
-  <div class="container">
+                    <ul class="list-unstyled">
+                        <p>
 
-    <!-- Grid row-->
-    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+                        </p>
+                        <p>
+                            <a href="{% url 'about_us' %}" class="text-dark">{% trans "ABOUT US" %}</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'delivery' %}" class="text-dark">{% trans "PAYMENT/DELIVERY" %}</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'faq' %}" class="text-dark">{% trans "FAQ" %}</a>
+                        </p>
+                    </ul>
+                </div>
+                <!--/.Second column-->
 
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="{% url 'about_us' %}">About us</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
 
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="{% url 'delivery' %}">Delivery and Payment</a>
-        </h6>
-      </div>
+                <!--Third column-->
+                <div class="col-md-4 col-lg-4">
+                                    <!--Info-->
+                    <p>
+                        </i> New York, NY 10012, US</p>
+                    <p>
+                        </i> info@example.com</p>
+                    <p>
+                        phone: + 01 234 567 88</p>
+                    <p>
+                        phone: + 01 234 567 89</p>
+                </div>
+                <!--/.Third column-->
 
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="{% url 'faq' %}">FAQ</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
 
-    </div>
-    <!-- Grid row-->
-    <hr class="rgba-white-light" style="margin: 0 15%;">
-
-  </div>
-  <!-- Footer Links -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Tupperware</div>
+            </div>
+        </div>
 
 </footer>
-<!-- Footer -->
+<!-- END footer block -->
+
 </body>
 
 

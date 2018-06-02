@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="container">
+<div class="form-group">
+  <form class="form-inline my-2 my-lg-0 ml-3" method="get">
+          <select class="form-control form-control sm-50 h-103" name="category_id">
+                   <option value="">{% trans "All Categories" %}</option>
+                              {% for category in categories %}
+                                    {% if category.id|slugify == query_category_id %}
+                                            <option value="{{ category.id }}" selected="selected">{{ category.name }}</option>
+                                    {% else %}
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
+                                  {% endif %}
+                              {% endfor %}
+          </select>
+      <div>
+          <div style="width: 550px; margin:20px;">
+            <input class="form-control mr-sm-10 h-75"  id="searchbox" name="q" type="text" placeholder="{% trans "Search" %}" value="{{ query_item_name }}" >
+            <button type="submit" class="btn btn-outline-success h-75 p-1 m-1">{% trans "Search" %}</button>
+          </div>
+      </div >
+  </form>
+</div>
+
+{% if items %}
+
+    <div class="row">
+        {% include 'product/card_items.html' %}
+    </div>
+
+{% else %}
+
+<h4 class="text-center">{% trans "No results" %}</h4>
+
+    </div>
+{% endif %}
+{% endblock %}
