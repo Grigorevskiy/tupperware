@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from product.models import Category, Item
+from product.models import Category, Item, SliderPhoto
 
 
 def home(request):
-    categories = Category.objects.all()
-    return render(request, 'base.html', {'categories': categories})
+    items = Item.objects.exclude(status=0)[:12]
+    slider = SliderPhoto.objects.all()
+    return render(request, 'home.html', {'items': items, 'slider': slider})
 
 def about_us(request):
     return render(request, 'about_us.html')
