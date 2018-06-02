@@ -42,7 +42,14 @@ def get_cart(request):
 
 
 def add_additional_item(request, item_id):
-
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            cart, created = Cart.objects.get(user_id=request.user.id)
+            item = get_object_or_404(Item, id=item_id)
+            cart.item.add(item)
+            messages.success(request, ('You have added item to cart!'))
+    else:
+        messages.info(request, ('Please login or register first!'))
 
     return render(request, '')
 

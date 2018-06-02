@@ -48,7 +48,7 @@
             <td>{{ item.title }}</td>
             <td>{{ item.sku }}</td>
             <td>
-                {{ form_info }}
+                {{ form_info.as_p }}
             </td>
             <td>{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
         </tr>
