@@ -10,22 +10,28 @@
         <div class="card">
             <div class="card-header bg-transparent text-right border-0 pb-0"><a href="{% url 'add_to_wishlist' i.id %}"><i class="material-icons" style="font-size: 25px; color: #dedede;">favorite</i></a></div>
             <div class="card-body pt-0 pb-1">
-                <img class="card-img-top" src="{{ i.photos.first.image.url }}" alt="Card image cap">
-                <h5 class="card-title text-danger">{{ i.title }}</h5>
-                <h6><p class="card-text font-weight-light">{{ i.description|truncatewords:18 }}</p></h6>
+                <a href="#" style="text-decoration: none">
+                    <img class="card-img-top" src="{{ i.photos.first.image.url }}" alt="Card image cap">
+                    <h5 class="card-title text-danger">{{ i.title }}</h5>
+                    <h6><p class="card-text font-weight-light text-muted" >{{ i.description|truncatewords:18 }}</p></h6>
+                </a>
             </div>
             <div class="card-footer  bg-transparent d-flex justify-content-between align-items-end pt-0 pb-2 border-0">
-            <span><a href="{% url 'add_to_cart' i.id %}"><i class="material-icons" style="font-size: 25px; color: #696969;">shopping_cart</i></a></span>
-                <span>
-                    {% if i.sale_price %}
-                    <s class="font-weight text-muted" style="font-size: 15px;">
-                    € {{ i.price}}</s><br>
-                        <span class="font-weight-bold text-danger" style="font-size: 18px;">€ {{ i.sale_price }}</span>
-                </span>
-            {% else %}
-                <span class="font-weight-bold text-danger" style="font-size: 18px;">€ {{ i.price }}</span>
-            {% endif %}
+                {% if i.status != 2 %}
+                    <span><a href="{% url 'add_to_cart' i.id %}"><i class="material-icons" style="font-size: 25px; color: #696969;">shopping_cart</i></a></span>
+                    <span>
+                        {% if i.sale_price %}
+                        <s class="font-weight text-muted" style="font-size: 15px;">
+                        € {{ i.price}}</s><br>
+                            <span class="font-weight-bold text-danger" style="font-size: 18px;">€ {{ i.sale_price }}</span>
+                    </span>
+                {% else %}
+                    <span class="font-weight-bold text-danger" style="font-size: 18px;">€ {{ i.price }}</span>
+                {% endif %}
+                {% else %}
+                    <p class="text-danger font-weight-bold">Verkauft</p>
+                {% endif %}
+                </div>
             </div>
-        </div>
     {% endfor %}
 </div>
