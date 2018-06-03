@@ -34,11 +34,11 @@
     <!--Table head-->
     <thead>
         <tr>
-            <th>Photo</th>
-            <th>Item name</th>
-            <th>SKU</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th class="text-center">Photo</th>
+            <th class="text-center">Item name</th>
+            <th class="text-center">SKU</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Price</th>
         </tr>
     </thead>
     <!--Table head-->
@@ -48,10 +48,10 @@
         <tr>
            {% for item in cart.item.all %}
 
-            <td scope="row"><img src="{{ item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.sku }}</td>
-            <td>
+            <td scope="row" class="text-center"><img src="{{ item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
+            <td class="text-center">{{ item.title }}</td>
+            <td class="text-center">{{ item.sku }}</td>
+            <td class="text-center">
                 <a href="{% url 'additional_item' item.id %}">+</a>
              <h5>{{ count }}</h5>
 

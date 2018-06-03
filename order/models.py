@@ -22,7 +22,6 @@ class Order(models.Model):
     contact_phone = models.CharField(max_length=255, verbose_name=('Contact phone'), blank=True)
     status = models.IntegerField(choices=ORDER_STATUS_CHOICES, default=ORDER_STATUS_CHOICES[0][0])
     total = models.IntegerField(verbose_name=('Total price'), null=True)
-    count = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
