@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div id="content" class="col-md-12"><h2>My Wishes</h2>
+    <div id="content" class="text-muted pb-4 ml-2"><h2>My Wishes</h2>
             <table class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -24,8 +24,8 @@
                 <td class="text-center">{{ item.count }}</td>
                 <td class="text-center">{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
             <td class="text-center">
-                <a href="{% url 'remove_from_wishlist' item.id %}" class="btn btn-info btn-sm" style="padding: 5px; padding-bottom: 0;"><i class="material-icons">delete</i></a>
-                <a href="{% url 'add_to_cart' item.id %}" class="btn btn-info btn-sm" style="padding: 5px; padding-bottom: 0;"><i class="material-icons" style="font-size: 25px; color: #fee9f5;">add_shopping_cart</i></a>
+                <a href="{% url 'remove_from_wishlist' item.id %}"><i class="material-icons">delete</i></a>
+                <a href="{% url 'add_to_cart' item.id %}"><i class="material-icons shopping_card" style="font-size: 25px; padding: 5px; padding-bottom: 0;">shopping_cart</i></a>
             </td>
         </tr>
 
@@ -33,9 +33,8 @@
         </tbody>
       </table>
 
-    <div class="buttons clearfix">
-            <div class="pull-right"><a href="{% url 'home' %}" class="btn btn-primary">Continue Shoping</a></div>
-        </div>
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-group-sm">Continue Shoping</a>
+
       </div>
 
 {% endblock %}
