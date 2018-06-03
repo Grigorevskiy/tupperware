@@ -15,7 +15,9 @@
       <tr>
           <th>
             <form method="POST" class="form-group" id="order">{% csrf_token %}
-              {{ form.as_p }}
+
+                {{ form.as_p }}
+
             </form>
           </th>
       </tr>
@@ -44,15 +46,20 @@
     <!--Table body-->
     <tbody>
         <tr>
+           {% for item in cart.item.all %}
+
             <td scope="row"><img src="{{ item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
             <td>{{ item.title }}</td>
             <td>{{ item.sku }}</td>
             <td>
-                {{ form_info.as_p }}
+                <a href="{% url 'additional_item' item.id %}">+</a>
+             <h5>{{ count }}</h5>
+
             </td>
             <td>{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
         </tr>
 
+            {% endfor %}
     </tbody>
 
     <!--Table body-->
