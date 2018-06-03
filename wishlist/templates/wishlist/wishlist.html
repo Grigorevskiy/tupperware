@@ -5,9 +5,7 @@
 
     {# for hover effect on icons #}
 <style>
-    i.material-icons{color: #dedede;}
-    i.material-icons.shopping_card{color:#696969}
-    i.material-icons.delete{color:#696969}
+    i.material-icons.wish_list_icon{color:#696969}
     i.material-icons:hover {
     color: red;
 }
@@ -19,7 +17,7 @@
           <tr>
             <td class="text-center">Photo</td>
             <td class="text-center">Product name</td>
-            <td class="text-center">SKU</td>
+            <td class="text-center">Item number</td>
             <td class="text-center">In stock</td>
             <td class="text-center">Price</td>
             <td class="text-center">Actions</td>
@@ -35,8 +33,8 @@
                 <td class="text-center">{{ item.count }}</td>
                 <td class="text-center">{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
             <td class="text-center">
-                <a href="{% url 'remove_from_wishlist' item.id %}"><i class="material-icons delete">delete</i></a>
-                <a href="{% url 'add_to_cart' item.id %}"><i class="material-icons shopping_card" style="font-size: 25px; padding: 5px; padding-bottom: 0;">shopping_cart</i></a>
+                <a href="{% url 'remove_from_wishlist' item.id %}"><i class="material-icons wish_list_icon">delete</i></a>
+                <a href="{% url 'add_to_cart' item.id %}"><i class="material-icons wish_list_icon" style="font-size: 25px; padding: 5px; padding-bottom: 0;">shopping_cart</i></a>
 
             </td>
         </tr>
