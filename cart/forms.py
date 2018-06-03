@@ -11,7 +11,4 @@ class CreateOrder(forms.Form):
     class Meta:
         model = Order
         fields = ('delivery_address', 'contact_phone',)
-#
-#
-# class Additional_order_info(forms.Form):
-#     quantity = forms.CharField(widget=forms.TextInput(attrs={'type': 'number', 'length': 50}))
+
