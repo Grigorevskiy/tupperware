@@ -39,31 +39,31 @@
 
 
 <!-- START Header top with links -->
-<div class="container-fluid bg-light" style="border-bottom: 1px solid #e0e0e0">
+<div class="container-fluid" style="border-bottom: 1px solid #e0e0e0; height: 50px;">
     <div class="container">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav mr-auto">
-                            <li class="nav-item ml-3">
+                            <li class="nav-item ml-3" style="border-right: 1px solid #e0e0e0;">
                                 <a class="nav-link" href="{% url 'get_wishlist' %}">Wishlist {% if user.wishlist.item.count > 0 %}({{ user.wishlist.item.count }}){% else %} (0) {% endif %}</a>
                             </li>
-                            <li class="nav-item ml-3">
+                            <li class="nav-item ml-3" style="border-right: 1px solid #e0e0e0;">
                                 <a class="nav-link" href="{% url 'get_cart' %}">Cart with purchases {% if  user.cart.item.count  > 0 %}({{  user.cart.item.count  }}){% else %} (0) {% endif %}</a>
                             </li>
                 </ul>
                 <ul class="navbar-nav">
                             {% if not user.is_authenticated %}
-                            <li class="nav-item ml-3" >
+                            <li class="nav-item ml-3" style="border-left: 1px solid #e0e0e0;">
                                 <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                             </li>
-                            <li class="nav-item ml-3">
+                            <li class="nav-item ml-3" style="border-left: 1px solid #e0e0e0;">
                                 <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                             </li>
                             {% else %}
-                            <li class="nav-item ml-3">
+                            <li class="nav-item ml-3" style="border-left: 1px solid #e0e0e0;">
                                 <a class="nav-link" href="{% url 'account_change_password' %}">Change password</a>
                             </li>
-                            <li>
+                            <li class="nav-item ml-3" style="border-left: 1px solid #e0e0e0;">
                                 <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                             </li>
                             {% endif %}
@@ -80,13 +80,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-6">
-                <a href="/"><img src="http://i079.radikal.ru/1603/f7/e32d9e4ed305.png"
+                <div class="mt-5 ml-3">
+                    <a href="/" ><img src="https://tupperware.com.ua/image/catalog/tupperware.png.pagespeed.ce.J41JH_SjXt.png"
                                                                  class="img-responsive"></a>
+                </div>
+
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="card-body border-0 text-center mt-5">
-                    <i class="material-icons" style="font-size: 48px;">call</i>
-                    <h3>+470 033 2212 21</h3>
+                <div class="card-body border-0 text-center mt-2">
+
+                    <i class="material-icons" style="font-size: 40px;">call</i><h4>+470 033 2212 21</h4>
                     </div>
             </div>
         </div>
@@ -98,21 +101,38 @@
 <!-- START block with category, search and cart -->
 <div class="container">
     <div class="row">
-        <div class="col-sm-4 m-0 p-0">
-            <h4 class="p-3 mb-2 bg-warning text-dark text-uppercase">Categories</h4>
+        <div class="col-sm-3 m-0 p-0" style="height: 60px">
+            <h4 class="p-3 pl-5 mb-2 bg-dark text-white text-uppercase">Categories</h4>
         </div>
-        <div class="col-sm-4 mb-2 bg-info">
-            <form class="form-inline my-2 my-lg-0 ml-3 pt-2" id="searchform" aria-label="Search" action="{% url 'search' %}" method="get" accept-charset="utf-8">
-                      <input class="form-control mr-sm-2 h-75" id="searchbox" name="q" type="text" placeholder="Search">
-                      <a href="{% url 'search' %}?q=&category_id="><button class="btn btn-default btn-rounded h-75 p-1 m-1" type="submit">Search</button></a>
+        <div class="col-sm-5 mb-2 bg-dark text-white" style="height: 60px">
+                <form class="form-inline my-lg-0 ml-3 pt-3 pl-5" id="searchform" aria-label="Search" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                        <input class="form-control mr-sm-2 h-75 w-75" id="searchbox" name="q" type="text" placeholder="Search">
+                      <a href="{% url 'search' %}?q=&category_id="><button class="btn btn-default btn-rounded p-0 h-100 w-100" type="submit"><i class="material-icons m-1 h-30 w-30" style="font-size: 20px;"">search</i></button></a>
                 </form>
         </div>
-        <div class="col-sm-4 bg-info" style="height: 60px">
-            <h5 class="p-3 mb-1 text-dark text-right text-uppercase">
-                <a class="text-dark" href="{% url 'get_cart' %}"> <i class="material-icons" style="font-size: 18px;">shopping_cart</i>Cart with purchases {% if  user.cart.item.count  > 0 %}({{  user.cart.item.count  }}){% else %} (0) {% endif %}</a>
-            </h5>
+
+        <div class="col-sm-4 bg-dark text-white" style="height: 60px">
+            <div class="row mt-2">
+            <div class="col-3"></div>
+            <div class="col-2 pr-0" style="padding-left: 38px;">
+                <div class="pt-1">
+                    <i class="material-icons" style="font-size: 38px;">shopping_cart</i>
+                </div>
+            </div>
+            <div class="col-7">
+                <div>
+                    <div class="row text-right" style="width: 174px;">
+                        <div class="col">Cart with purchases </div>
+                        <div class="w-100"></div>
+                        <div class="col">Articles: {% if  user.cart.item.count  > 0 %}{{  user.cart.item.count  }}{% else %} 0 {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
+        </div>
 </div>
 
 <!-- END block with category, search and cart-->
@@ -135,50 +155,55 @@
 
 
 <!-- START container with search, categories and -->
-<footer class="footer font-small bg-light lighten-3 pt-4 mt-5" style="border-top: 1px solid #e0e0e0">
-    <div class="container text-center text-md-left">
-        <div class="row ">
-        <!--First column-->
-            <div class="col-md-4 col-lg-4">
-                <p class="text-justify">Tupperware is a home products line that includes preparation, storage, and serving products for the kitchen and home.
-                        In 1942, Earl Tupper developed his first bell shaped container;
-                        the brand products were introduced to the public in 1948.</p>
+<footer class="footer font-small lighten-3 mt-5" style="border-top: 1px solid #e0e0e0">
+        <div class="container">
+        <div class="row text-center d-flex justify-content-center pt-5">
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a href="{% url 'about_us' %}" class="text-dark">About us</a>
+                </h6>
             </div>
-        <!--/.First column-->
-                <hr class="clearfix w-100 d-md-none">
 
-        <!--Second column-->
-            <div class="col-md-4 col-lg-4 ml-auto text-center">
-                <ul class="list-unstyled">
-                        <p>
-                            <a href="{% url 'about_us' %}" class="text-dark">{% trans "ABOUT US" %}</a>
-                        </p>
-                        <p>
-                            <a href="{% url 'delivery' %}" class="text-dark">{% trans "PAYMENT/DELIVERY" %}</a>
-                        </p>
-                        <p>
-                            <a href="{% url 'faq' %}" class="text-dark">{% trans "FAQ" %}</a>
-                        </p>
-                </ul>
+            <div class="col-md-2 mb-3">
+            <h6 class="text-uppercase font-weight-bold">
+                <a href="{% url 'delivery' %}" class="text-dark">PAYMENT/DELIVERY</a>
+            </h6>
             </div>
-        <!--/.Second column-->
-                <hr class="clearfix w-100 d-md-none">
 
-        <!--Third column-->
-            <div class="col-md-4 col-lg-4">
-                    <p>
-                        </i> New York, NY 10012, US</p>
-                    <p>
-                        </i> info@example.com</p>
-                    <p>
-                        phone: + 01 234 567 88</p>
-                    <p>
-                        phone: + 01 234 567 89</p>
+            <div class="col-md-2 mb-3">
+            <h6 class="text-uppercase font-weight-bold">
+                <a href=href="{% url 'faq' %}" class="text-dark">FAQ</a>
+            </h6>
             </div>
-        <!--/.Third column-->
-                <hr class="clearfix w-100 d-md-none">
         </div>
+
+    <hr class="rgba-white-light" style="margin: 0 5%;">
+    <!-- Grid row-->
+    <div class="row d-flex text-center justify-content-center mb-md-0 mb-1">
+          <div class="col-md-8 col-12 mt-3">
+            <p style="line-height: 1.7rem">Tupperware is a home products line that includes preparation, storage, and serving products for the kitchen and home.
+                        In 1942, Earl Tupper developed his first bell shaped container;
+                        the brand products were introduced to the public in 1948. </p>
+          </div>
     </div>
+
+            <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+            <div class="row text-center mt-3 mb-4">
+                <div class="col-3">
+                    <strong><p>Adress</p></strong>
+                </div>
+                <div class="col-3">
+                    <strong><p>email</p></strong>
+                </div>
+                <div class="col-3">
+                    <strong><p>phone number</p></strong>
+                </div>
+                <div class="col-3">
+                    <strong><p>phone number</p></strong>
+                </div>
+            </div>
+        </div>
 </footer>
 <!-- END footer block -->
 
