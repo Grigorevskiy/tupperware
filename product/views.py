@@ -1,6 +1,7 @@
+from django.http import Http404
 from django.shortcuts import redirect, get_object_or_404, render
 from product.forms import CommentForm
-from product.models import Comment
+from product.models import Comment, Item
 
 
 def create_comment(request, item_id):
@@ -24,7 +25,7 @@ def delete_comment(request, comment_id, item_id):
         if request.method == "POST":
             comment.delete()
             return redirect('/item/{}'.format(item_id))
-        return render(request, "product/detail.html")
+        return render(request, "product/details.html")
     else:
         return redirect('/')
 
@@ -42,3 +43,12 @@ def update_comment(request, comment_id, item_id):
         return render(request, 'product/comment_update.html', {'form': form})
     else:
         return redirect('/')
+
+
+def details(request, item_id):
+    item = Item.objects.filter(id=item_id).first()
+    if not item:
+        raise Http404
+    similar_items = Item.objects.exclude(id=item_id)
+
+    return render(request, 'product/details.html', {'item': item, 'items': similar_items})
