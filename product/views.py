@@ -1,8 +1,8 @@
 from django.http import Http404
 from django.shortcuts import redirect, get_object_or_404, render
 from product.forms import CommentForm
-from product.models import Comment, Item
-
+from product.models import Comment, Item, Category
+from product.utils import handle_pagination
 
 def create_comment(request, item_id):
     if request.user.is_authenticated:
@@ -52,3 +52,12 @@ def details(request, item_id):
     similar_items = Item.objects.exclude(id=item_id)
 
     return render(request, 'product/details.html', {'item': item, 'items': similar_items})
+
+
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    categories = Category.objects.all()
+    items = Item.objects.filter(category__id=category_id)
+    return render(request, 'product/category_detail.html', {'category': category,
+                                                            'items': handle_pagination(request, items),
+                                                            'categories': categories})
