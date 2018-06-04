@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    {# for hover effect on icons #}
+<style>
+    i.material-icons.wish_list_icon{color:#696969}
+    i.material-icons:hover {
+    color: red;
+}
+</style>
+
+    <div id="content" class="text-muted pb-4 ml-2"><h2>My Wishes</h2>
+            <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td class="text-center">Photo</td>
+            <td class="text-center">Product name</td>
+            <td class="text-center">Item number</td>
+            <td class="text-center">In stock</td>
+            <td class="text-center">Price</td>
+            <td class="text-center">Actions</td>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for item in wishlist.item.all %}
+        <tr>
+                <td class="text-center"><img src="{{ item.photos.first.image.url }}" width="90px" alt="..." class="img-responsive" /></td>
+                <td class="text-center"><a href="{% url 'item_details' item.id %}">{{ item.title }}</a></td>
+                <td class="text-center">{{ item.sku }}</td>
+                <td class="text-center">{{ item.count }}</td>
+                <td class="text-center">{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
+            <td class="text-center">
+                <a href="{% url 'remove_from_wishlist' item.id %}"><i class="material-icons wish_list_icon">delete</i></a>
+                <a href="{% url 'add_to_cart' item.id %}"><i class="material-icons wish_list_icon" style="font-size: 25px; padding: 5px; padding-bottom: 0;">shopping_cart</i></a>
+
+            </td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+      </table>
+
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-group-sm">Continue Shoping</a>
+
+      </div>
+
+{% endblock %}
