@@ -1,8 +1,56 @@
 {% extends "base.html" %}
-{% load i18n %}
+
 
 {% block content %}
 
-    <h4>Home</h4>
+    <div class="container">
+        <div class="row">
+            <div id="carouselExampleFade" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for i in slider %}
+                        <div class="carousel-item {% if i == slider.first %} active {% endif %}">
+                            <img class="d-block w-100" src="{{ i.file.url }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="pt-2">
+            <h2 class="text-center"><b>Tupperware</b> – посуда, которая изменит вашу жизнь к лучшему<br></h2>
+            <p class="font-weight-light">С Tupperware ваша жизнь станет…</p>
+            <p class="font-weight-light">
+                …более вкусной. Посуда Tupperware поможет узнать истинный вкус давно знакомых блюд. С ее помощью вы
+                сможете приготовить еду быстрее и с минимальной термической обработкой, что положительно отразится на ее
+                вкусовых качествах. Все изделия изготавливаются из биологически и химически нейтрального полимера, который
+                не взаимодействует с продуктами питания. А посуда для хранения снабжена специальными влаго-воздухо не
+                проницаемыми крышками, позволяющими еде оставаться свежей дольше.
+            </p>
+            <p class="font-weight-light">
+                …более здоровой. Чтобы сохранить пользу всех продуктов, очень важно готовить их правильно, с минимальной
+                термической обработкой. В этом вам поможет посуда из каталога Tupperware. Так, термосервирователь
+                позволит бережно приготовить крупы, овощи, рыбу, напитки и йогурты с сохранением ценных питательных
+                веществ, интенсивности цвета и аромата. Изделие МикроГурмэ от Tupperware используют в микроволновке,
+                при этом микроволны не воздействуют непосредственно на пищу. С коллекцией «От шефа» можно готовить
+                продукты на плите без масла за более короткое время. Наш интернет-магазин Tupperware предложит решение
+                для любых блюд!
+            </p>
+            <p class="font-weight-light">
+                …более яркой. Выдающийся дизайн посуды Tupperware дает возможность использовать ее для сервировки
+                стола, грамотной и аккуратной организации хранения продуктов, а также пикников на природе.
+            </p>
+        </div>
+        <h4 class="pb-2">News</h4>
+        <div class="row mx-auto">
+            {% include 'product/card_slider.html' %}
+        </div>
+    </div>
 
 {% endblock %}

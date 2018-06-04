@@ -1,0 +1,45 @@
+{#Change default bootrap column count to 4 for display bigger than 992px#}
+<style media="screen and (min-width:992px)">
+.card-columns {
+     column-count: 4;
+}
+</style>
+{# for hover effect on icons #}
+<style>
+    i.material-icons{color: #dedede;}
+    i.material-icons.shopping_card{color:#696969}
+    i.material-icons:hover {
+    color: red;
+}
+</style>
+
+<div class="card-columns">
+    {% for i in items %}
+        <div class="card">
+            <div class="card-header bg-transparent text-right border-0 pb-0"><a href="{% url 'add_to_wishlist' i.id %}"><i class="material-icons" style="font-size: 25px;">favorite</i></a></div>
+            <div class="card-body pt-0 pb-1">
+                <a href="{% url 'item_details' i.id %}" style="text-decoration: none">
+                    <img class="card-img-top" src="{{ i.photos.first.image.url }}" alt="Card image cap">
+                    <h5 class="card-title text-danger pt-4">{{ i.title }}</h5>
+                    <h6><p class="card-text font-weight-light text-muted" >{{ i.description|truncatewords:18 }}</p></h6>
+                </a>
+            </div>
+            <div class="card-footer  bg-transparent d-flex justify-content-between align-items-end pt-0 pb-2 border-0">
+                {% if i.status != 2 %}
+                    <span><a href="{% url 'add_to_cart' i.id %}"><i class="material-icons shopping_card" style="font-size: 25px;">shopping_cart</i></a></span>
+                    <span>
+                        {% if i.sale_price %}
+                        <s class="font-weight text-muted" style="font-size: 15px;">
+                        € {{ i.price}}</s><br>
+                            <span class="font-weight-bold text-danger" style="font-size: 18px;">€ {{ i.sale_price }}</span>
+                    </span>
+                {% else %}
+                    <span class="font-weight-bold text-danger" style="font-size: 18px;">€ {{ i.price }}</span>
+                {% endif %}
+                {% else %}
+                    <p class="text-danger font-weight-bold">Verkauft</p>
+                {% endif %}
+                </div>
+            </div>
+    {% endfor %}
+</div>

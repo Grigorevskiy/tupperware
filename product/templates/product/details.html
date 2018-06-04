@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{# for hover for add to wishlist icon #}
+<style>
+    i.material-icons.favourite{color: #dedede;}
+    i.material-icons.favourite:hover {
+    color: red;
+}
+</style>
+
+{% block content %}
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-lg-6 card border-0">
+                <div class="card-header bg-transparent text-right border-0 pb-0">
+                    <a href="{% url 'add_to_wishlist' item.id %}"><i class="material-icons favourite"
+                                                                     style="font-size: 25px;">favorite</i>
+                    </a>
+                </div>
+                <a href="{{ item.photos.first.image.url }}?image=250" data-toggle="lightbox" data-title="{{ item.title }}">
+                    <img class="img-thumbnail border-0" style="max-width:100%;" src="{{ item.photos.first.image.url }}"/>
+                </a>
+            </div>
+            <div class="col-lg-5">
+                <h2 class="text-muted pb-4 ml-2">{{ item.title }}</h2>
+                    <div class="row ml-2">
+                        <div class="col-sm">
+                            <i class="material-icons" style="font-size: 80px; position:relative; color: #dedede;">brush</i>
+                            <p>herausragendes Design</p>
+                        </div>
+                        <div class="col-sm">
+                            <i class="material-icons" style="font-size: 80px; position:relative; color: #dedede;">local_florist</i>
+                            <p>chemisch neutrales Polymer</p>
+                        </div>
+                        <div class="col-sm">
+                            <i class="material-icons" style="font-size: 80px; position:relative; color: #dedede;">whatshot</i>
+                            <p>breiter Temperaturmodus</p>
+                        </div>
+                    </div>
+                    <p class="text-muted ml-2">Item number:<span class="text-dark"> {{ item.sku }}</span></p>
+                    {% if item.sale_price %}<h6><s class="text-muted ml-2"> € {{ item.price }}</s></h6>
+                        <h3><span class="text-danger ml-2"> € {{ item.sale_price }}</span>
+                            {% else %}
+                                <span class="text-danger ml-2"> € {{ item.price }}</span></h3>
+                    {% endif %}
+                    {% if item.count %}
+                        <h5 class="mt-4">Availble<span class="text-dark"> {{ item.count }}</span></h5>
+                    {% endif %}
+                    <br>
+                    <form method="POST" role="form" action="{% url 'add_to_cart' item.id %}">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1"><h6 class="text-muted">How many you want to order?</h6></label>
+                            <input type="number" value="1" class="form-control" id="count">
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-lg btn-block">Add to cart</button>
+                    </form>
+            </div>
+            {#   small image preview block   #}
+            {% if item.photos.count > 1 %}
+                <div class="row mb-3">
+                    <div class="col-md-8">
+                            {% for i in item.photos.all %}
+                            <a href="{{ i.image.url }}" data-toggle="lightbox" data-gallery="example-gallery">
+                                <img src="{{ i.image.url }}" class="img-thumbnail" style="max-width: 100px;">
+                            </a>
+                            {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            {#    description block   #}
+            <div class="container pt-3">
+                    <h3 class="text-muted">Description:</h3>
+                    <p class="font-weight-light">{{ item.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        {#  Item like this block  #}
+        <div>
+            {% if items %}
+            <div class="row mx-auto">
+            <h4>Similar items</h4>
+                {% include 'product/card_slider.html' %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
