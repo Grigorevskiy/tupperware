@@ -1,5 +1,7 @@
 import random
 from django.contrib import admin
+
+from pages.models import Faq
 from product.models import Item, ItemPhoto, Category
 
 
@@ -26,3 +28,5 @@ class ItemAdmin(admin.ModelAdmin):
 
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Category)
+
+admin.site.register(Faq)
