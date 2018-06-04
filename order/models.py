@@ -30,6 +30,6 @@ class Order(models.Model):
 
 
 class OrderInfo(models.Model):
-    item_id = models.ForeignKey(Item, on_delete=models.CASCADE)
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    item_in_order = models.ForeignKey(Item, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     count_item = models.IntegerField(default=1)

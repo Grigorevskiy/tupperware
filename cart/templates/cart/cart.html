@@ -46,17 +46,20 @@
     <!--Table body-->
     <tbody>
         <tr>
-           {% for item in cart.item.all %}
+           {% for i in cart.cartinfo_set.all %}
 
-            <td scope="row" class="text-center"><img src="{{ item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
-            <td class="text-center">{{ item.title }}</td>
-            <td class="text-center">{{ item.sku }}</td>
+            <td scope="row" class="text-center"><img src="{{ i.item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
+            <td class="text-center">{{ i.item.title }}</td>
+            <td class="text-center">{{ i.item.sku }}</td>
             <td class="text-center">
-                <a href="{% url 'additional_item' item.id %}">+</a>
-             <h5>{{ count }}</h5>
-
+                <a href="{% url 'additional_item' cart.id i.item_id %}">+</a>
+             <h5>{{ i.count_item }}</h5>
+                <a href="{% url 'delete_additional_item' cart.id i.item_id %}">-</a>
             </td>
-            <td>{% if item.sale_price %} <s class="small">€ {{ item.price }}</s>  € {{ item.sale_price }} {% else %}€ {{ item.price }} {% endif %}</td>
+            <td>{% if i.item.sale_price %} <s class="small">€ {{ i.item.price }}</s>  € {{ i.item.sale_price }} {% else %}€ {{ i.item.price }} {% endif %}</td>
+               <td class="actions" data-th="">
+                    <a href="{% url 'remove_from_cart' i.item.id %}" class="btn btn-outline-danger btn-sm text-center" style="padding: 5px; padding-bottom: 0;"><i class="material-icons">delete</i></a>
+                </td>
         </tr>
 
             {% endfor %}
@@ -72,8 +75,8 @@
 
     <div class="row">
 
-        <div class="col-md-6"><a href="/" class="btn btn-outline-primary">{% trans "Continue Shopping" %}</a></div>
-        <div class="col-md-6"><button type="submit" form="order" class="btn btn-outline-primary btn-block">Create Order</button></td>
+        <div class="col-md-6"><a href="/" class="btn btn-outline-primary">Continue Shopping</a></div>
+        <div class="col-md-6"><button type="submit" form="order" class="btn btn-outline-primary btn-block"><a href="{% url 'create_order' %}">Create Order</a></button></td>
 
     </div>
 
