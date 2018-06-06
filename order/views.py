@@ -6,7 +6,7 @@ from django.contrib import messages
 
 
 def create_order(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.method == 'POST':
         cart, created = Cart.objects.get_or_create(user_id=request.user.id)
 
         # calculate total for price in cart items
@@ -17,23 +17,13 @@ def create_order(request):
             else:
                 cart_total += (i.item.price * i.count_item)
 
-        form = CreateOrder()
-        if request.method == "POST":
-            order = Order.objects.create(user=request.user, total=cart_total,
+        order = Order.objects.create(user=request.user, total=cart_total,
                                          delivery_address=request.POST['delivery_address'],
                                          contact_phone=request.POST['contact_phone'])
-            for i in cart.cartinfo_set.all():
-                order_info = OrderInfo.count_item = CartInfo.objects.first().count_item
-                order_info = OrderInfo(item_in_order=i.item)
-                order_info.save()
-                # order.item.add(item)
+        for i in cart.cartinfo_set.all():
+            OrderInfo.objects.create(item_in_order=i.item, count_item=i.count_item, order=order)
 
-            cart.items.clear()
-            messages.info(request, ('Thank you for your order, our manager will contact you soon!'))
+        cart.items.clear()
+        messages.info(request, ('Thank you for your order, our manager will contact you soon!'))
 
-            return redirect('/')
-        return render(request, 'cart/cart.html', {'form': form, 'cart':cart, 'cart_total':cart_total})
-
-
-    else:
-        return redirect('/')
+    return redirect('/')

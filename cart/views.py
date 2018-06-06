@@ -45,11 +45,10 @@ def delete_additional_item(request, item_id, cart_id):
 
 def add_to_cart(request, item_id):
     if request.user.is_authenticated:
-        if request.method == "GET":
+        if request.method == "POST":
             cart, created = Cart.objects.get_or_create(user_id=request.user.id)
             item = get_object_or_404(Item, id=item_id)
-            #TODO change the method to POST
-            CartInfo.objects.create(cart=cart, item = item, count_item=1)
+            CartInfo.objects.create(cart=cart, item = item, count_item=request.POST['count'])
             messages.success(request, ('You have added item to cart!'))
     else:
         messages.info(request, ('Please login or register first!'))
