@@ -1,5 +1,11 @@
 from django.shortcuts import render
+
+
+from pages.models import Faq
+
+
 from product.models import Category, Item, SliderPhoto
+
 
 
 def home(request):
@@ -8,6 +14,7 @@ def home(request):
     return render(request, 'home.html', {'items': items, 'slider': slider})
 
 def about_us(request):
+
     return render(request, 'about_us.html')
 
 
@@ -16,8 +23,8 @@ def delivery(request):
 
 
 def faq(request):
-    return render(request, 'faq.html')
-
+    faq_content = Faq.objects.all()
+    return render(request, 'faq.html', {'faq_content': faq_content,})
 
 def search(request):
     categories = Category.objects.all()
