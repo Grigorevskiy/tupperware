@@ -21,7 +21,7 @@ def create_order(request):
                                          delivery_address=request.POST['delivery_address'],
                                          contact_phone=request.POST['contact_phone'])
         for i in cart.cartinfo_set.all():
-            OrderInfo.objects.create(item_in_order=i.item, count_item=i.count_item, order=order)
+            OrderInfo.objects.create(item=i.item, count_item=i.count_item, order=order)
 
         cart.items.clear()
         messages.info(request, ('Thank you for your order, our manager will contact you soon!'))
