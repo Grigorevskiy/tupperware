@@ -4,8 +4,10 @@ from product.models import Category, Item, SliderPhoto
 
 
 def home(request):
-    categories = Category.objects.all()
-    return render(request, 'base.html', {'categories': categories})
+    items = Item.objects.exclude(status=0)[:12]
+    slider = SliderPhoto.objects.all()
+    return render(request, 'home.html', {'items': items, 'slider': slider})
+
 
 def about_us(request):
     return render(request, 'about_us.html')
@@ -17,7 +19,8 @@ def delivery(request):
 
 def faq(request):
     faq_content = Faq.objects.all()
-    return render(request, 'faq.html', {'faq_content': faq_content,})
+    return render(request, 'faq.html', {'faq_content': faq_content})
+
 
 def search(request):
     categories = Category.objects.all()
