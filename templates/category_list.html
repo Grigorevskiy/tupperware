@@ -1,0 +1,7 @@
+
+<div class="list-group"  style="border-right: 1px solid #ddd; border-left: 1px solid #ddd;">
+    {% for category in categories %}
+           <a href="{% url 'category_detail' category.id %}" class="list-group-item-action pb-2 pt-2" style="border-bottom: 1px solid #ddd; background-color: #fcfcfc "><i class="material-icons"
+               style="font-size: 15px; color: black; position: relative; top: 2px; left: 5px; padding-right: 5px;">keyboard_arrow_right</i>{{ category.name }}</a>
+    {% endfor %}
+</div>

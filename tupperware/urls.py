@@ -29,7 +29,7 @@ urlpatterns = [
     path('item/', include('product.urls')),
     path('wishlist/', include('wishlist.urls')),
     path('order/', include('order.urls')),
-
+    path('category/', include('product.category_urls')),
  ]
 
 

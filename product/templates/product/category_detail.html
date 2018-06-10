@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-3 mt-0">
+            {% include 'category_list.html' %}
+        </div>
+        <div class="col-9">
+            <!-- START container category's name -->
+            <div class="container mt-3 bg-light">
+                <div class="brand" style="font-size: 25px">
+                    {{ category.name }}
+                </div>
+            </div>
+            <!-- END container -->
+
+            <!-- START container with items. -->
+            <div class="container mt-3">
+                {% include 'product/card_slider.html' %}
+            </div>
+            <!-- End container -->
+
+            <!-- Pagination -->
+            <div class="container ">
+                <nav class="mt-3">
+                    {% if items.has_next %}
+                        <ul class="pagination pg-red float-right pr-4">
+                            <!--Arrow left-->
+                            <li class="page-item">
+                                {% if items.has_previous %}
+                                    <a class="page-link" aria-label="Previous"
+                                       href="?page={{ items.previous_page_number }}">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                {% endif %}
+                            </li>
+                            <!--Numbers-->
+                            {% for num in items.paginator.page_range %}
+                                {% if items.number == num %}
+                                    <li class="page-item active"><a class="page-link">{{ num }}</a></li>
+                                {% elif num > items.number|add:'-3' and num < items.number|add:'3' %}
+                                    <li class="page-item"><a class="page-link">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <!--Arrow right-->
+                            <li class="page-item">
+                                {% if items.has_next %}
+                                    <a class="page-link" aria-label="Next"
+                                       href="?page={{ items.next_page_number }}">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    {% endif %}
+                </nav>
+            </div>
+            <!-- END pagination -->
+        </div>
+    </div>
+
+{% endblock %}

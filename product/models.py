@@ -6,6 +6,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
 
+
     name = models.CharField(max_length=255, verbose_name='Name')
     description = models.TextField(verbose_name='Description')
 
