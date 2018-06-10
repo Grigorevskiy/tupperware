@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <style>
+    i.material-icons.favourite{color: #dedede;}
+    i.material-icons.favourite:hover {
+    color: red;
+}
+</style>
+
+         <form method="POST" class="form-group" id="order" action="{% url 'create_order' %}">{% csrf_token %}
+
+<h1>Creating Order</h1>
+
+    <div class="row">
+
+        <div class="col-md-pull-6">
+            <p class="text-center"><strong>Fill information for order</strong></p>
+
+            <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+          <th>
+                {{ form.as_p }}
+          </th>
+      </tr>
+    </thead>
+  </table>
+        </div>
+
+        <div class="col-md-7">
+            <p class="text-center"><strong>Items in cart</strong></p>
+
+            <!--Table-->
+<table class="table table-bordered">
+
+    <!--Table head-->
+    <thead>
+        <tr>
+            <th class="text-center">Photo</th>
+            <th class="text-center">Item name</th>
+            <th class="text-center">SKU</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Price (x1)</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr>
+           {% for i in cart.cartinfo_set.all %}
+
+            <td scope="row" class="text-center"><img src="{{ i.item.photos.first.image.url }}" width="100px" alt="..." class="img-responsive" /></td>
+            <td class="text-center"><a href="{% url 'item_details' i.item.id %}">{{ i.item.title }}</a></td>
+            <td class="text-center">{{ i.item.sku }}</td>
+            <td class="text-center">
+                <a href="{% url 'additional_item' cart.id i.item_id %}"><i class="material-icons">add</i></a>
+             <h5>{{ i.count_item }}</h5>
+                <a href="{% url 'delete_additional_item' cart.id i.item_id %}"><i class="material-icons">remove</i></a>
+            </td>
+            <td>{% if i.item.sale_price %} <s class="small">€ {{ i.item.price }}</s>  € {{ i.item.sale_price }} {% else %}€ {{ i.item.price }} {% endif %}</td>
+               <td class="text-center" data-th="">
+                    <a href="{% url 'remove_from_cart' i.item.id %}" class="material-icons" style="padding: 5px; padding-bottom: 0;"><i class="material-icons favourite">delete</i></a>
+                </td>
+        </tr>
+
+            {% endfor %}
+    </tbody>
+
+    <!--Table body-->
+</table>
+<!--Table-->
+
+<tfoot>
+
+    <p class="text-right"><strong>Total Price €:{{ cart_total }}</strong></p>
+
+    <div class="row">
+        <div class="col-md-4"><a href="/" class="btn btn-secondary btn-group">Continue Shopping</a></div>
+        <div class="col-md-8 text-right"><button type="submit" class="btn btn-secondary btn-group">Create Order</button></div>
+    </div>
+
+</tfoot>
+        </div>
+    </div>
+         </form>
+
+{% endblock %}

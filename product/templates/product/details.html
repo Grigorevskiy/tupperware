@@ -47,12 +47,12 @@
                         <h5 class="mt-4">Availble<span class="text-dark"> {{ item.count }}</span></h5>
                     {% endif %}
                     <br>
-                    <form method="POST" role="form" action="{% url 'add_to_cart' item.id %}">
+                    <form method="POST" class="post-form" role="form" action="{% url 'add_to_cart' item.id %}">{% csrf_token %}
                         <div class="form-group">
                             <label for="exampleInputPassword1"><h6 class="text-muted">How many you want to order?</h6></label>
-                            <input type="number" value="1" class="form-control" id="count">
+                            <input type="number" value="1" class="form-control" id="count" name="count">
                         </div>
-                        <button type="button" class="btn btn-secondary btn-lg btn-block">Add to cart</button>
+                        <a href="{% url 'add_to_cart' item.id %}"><button type="submit" class="btn btn-secondary btn-lg btn-block">Add to cart</button></a>
                     </form>
             </div>
             {#   small image preview block   #}
