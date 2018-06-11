@@ -1,6 +1,24 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
-    <h1>FAQ</h1>
+
+    <h1 class="text-center" style="font-size: 48px"> FAQ</h1>
+    <br>
+    <div class="accordion" id="accordionExample">
+        <div class="row justify-content-md-center">
+            <div class="col-md-10">
+                {% for i in faq_content %}
+                    <div class="card">
+                        <div class="card-header text-light bg-dark collapsed" id="heading{{ i.id }}" style="height: 50px;" data-toggle="collapse" data-target="#collapse{{ i.id }}" aria-expanded="false" aria-controls="collapse{{ i.id }}"> {{ i.question }}
+                        </div>
+                        <div id="collapse{{ i.id }}" class="collapse" aria-labelledby="heading{{ i.id }}" data-parent="#accordionExample">
+                            <div class="card-body">
+                                    {{ i.answer }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,6 +1,27 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
-    <h1>Delivery</h1>
+   <html>
+
+   <div class="container">
+        <h1 class="text-left" style="font-size: 48px"> Shipping & Handling</h1>
+        <br>
+            <div class="row justify-content-md-left">
+                <div class="col-md-8">
+                    <h5 class="text-justify">We ship orders to the following U.S. destinations: Continental U.S.,
+                        Alaska, Hawaii, Puerto Rico, Guam and military addresses (APO and FPO).
+                        To assure quick, reliable delivery, we ship all orders to non-P.O. box addresses within the
+                        continental U.S. via FedEx Ground. Some orders may be delivered by FedEx to your local post
+                        office for final delivery to your door. These orders can still be tracked through FedEx.
+                        Orders shipped to P.O. box addresses within the continental U.S., as well as orders outside
+                        of the continental U.S., are shipped via USPS Priority Mail. This includes orders shipped to
+                        Alaska, Hawaii, Guam, Puerto Rico and military addresses (APO and FPO.)
+                        Shipping charges are determined by your order's subtotal amount (less any eGift
+                        Certificates purchased).</h5>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://www.maxpixel.net/static/photo/1x/Shipment-Woman-Delivery-Shipping-Girl-Courier-1417310.png" style="width: 70%; height: auto;">
+                </div>
+            </div>
+   </div>
 {% endblock %}
