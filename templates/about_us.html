@@ -1,6 +1,32 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
-    <h1>About us</h1>
+    <div class="container">
+        <h1 class="text-center" style="font-size: 48px"> About us</h1>
+        <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="thumbnail">
+                        <img src="http://www.tupperware.com/media/wysiwyg/earl-tupper.jpg" class="img-thumbnail"
+                             alt="Earl Tupper" width="525" height="366">
+                    </div>
+                    <h5 class="text-justify">In 1946, chemist Earl Tupper created lightweight, non-breakable plastic
+                        containers, but at first, Tupperware didn't sell well in stores. The products were so innovative
+                        that customers needed demonstrations to understand how they worked.</h5>
+                </div>
+                <div class="col-md-6">
+                    <div class="thumbnail">
+                        <img src="http://www.tupperware.com/media/wysiwyg/brownie-wise-founders-video.jpg"
+                             class="img-thumbnail" style="float:right" alt="Brownie" width="525" height="366">
+                        <h5 class="text-justify" >Brownie understood early on that women in an increasingly crazy world
+                            needed more options for making a good living. Under her leadership in the 1950s, Tupperware
+                            became well-known for offering American women expanded opportunities to earn an income,
+                            drive their careers and build their confidence. Dubbed the “Tupperware effect,” our
+                            entrepreneurial opportunity is now sweeping the globe, helping women everywhere elevate
+                            their economic and social status. All 2.9 million Tupperware Brands Sales Force Members
+                            comprise a global force for female empowerment that would make Brownie really proud.</h5>
+                    </div>
+                </div>
+            </div>
+    </div>
 {% endblock %}
