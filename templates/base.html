@@ -48,7 +48,7 @@
                                 <a class="nav-link" href="{% url 'get_wishlist' %}">Wishlist {% if user.wishlist.item.count > 0 %}({{ user.wishlist.item.count }}){% else %} (0) {% endif %}</a>
                             </li>
                             <li class="nav-item ml-3" style="border-right: 1px solid #e0e0e0;">
-                                <a class="nav-link" href="{% url 'get_cart' %}">Cart with purchases {% if  user.cart.item.count  > 0 %}({{  user.cart.item.count  }}){% else %} (0) {% endif %}</a>
+                                <a class="nav-link" href="{% url 'get_cart' %}">Cart with purchases {% if  user.cart.cartinfo_set.item.count  > 0 %}({{  user.cart.cartinfo_set.item.count  }}){% else %} (0) {% endif %}</a>
                             </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -149,9 +149,11 @@
     {% endif %}
 </div>
 
-
+<div class="container">
     {% block content %}
+
     {% endblock content %}
+</div>
 
 
 <!-- START container with search, categories and -->
